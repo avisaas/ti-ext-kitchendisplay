@@ -1,7 +1,7 @@
 {
-    "name": "igniterlabs/ti-ext-kitchendisplay",
+    "name": "avisaas/ti-ext-kitchendisplay",
     "type": "tastyigniter-package",
-    "description": " This extension displays orders in a simplified way to help kitchen staff to move orders to their different status swiftly. ",
+    "description": "This extension displays orders in a simplified way to help kitchen staff to move orders to their different status swiftly. (avisaas mirror of igniterlabs/ti-ext-kitchendisplay: adds the avisaas Marketplace connector, which reports the site domain and version to avisaas.)",
     "license": "MIT",
     "authors": [
         {
@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-        "tastyigniter/core": "^v4.0"
+        "tastyigniter/core": "^v4.0",
+        "avisaas/ti-ext-connector": "^1.3"
     },
     "require-dev": {
         "larastan/larastan": "^3.0",
@@ -65,5 +66,8 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "replace": {
+        "igniterlabs/ti-ext-kitchendisplay": "self.version"
+    }
 }
