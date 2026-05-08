@@ -4,47 +4,38 @@ declare(strict_types=1);
 
 namespace IgniterLabs\KitchenDisplay;
 
-use Igniter\System\Classes\BaseExtension;
-use IgniterLabs\KitchenDisplay\Models\KitchenDisplay;
-use Illuminate\Database\Eloquent\Relations\Relation;
-use Override;
+use IgniterLabs\KitchenDisplay\AviMarketplace\Admin;
+use IgniterLabs\KitchenDisplay\AviMarketplace\Setup;
 
-class Extension extends BaseExtension
+class Extension extends UpstreamExtension
 {
-    #[Override]
+    private bool $aviMarketplaceGated = false;
+
+    public function __construct($app)
+    {
+        parent::__construct($app);
+
+        $gated = Setup::gated();
+        $this->aviMarketplaceGated = $gated;
+
+        if ($gated) {
+            $this->disabled = true;
+        }
+
+        rescue(fn () => Admin::attach($gated), null, false);
+    }
+
+    public function register(): void
+    {
+        if (!Setup::withholds($this->aviMarketplaceGated)) {
+            parent::register();
+        }
+    }
+
     public function boot(): void
     {
-        Relation::morphMap([
-            'kitchen_displays' => KitchenDisplay::class,
-        ]);
-    }
-
-    #[Override]
-    public function registerPermissions(): array
-    {
-        return [
-            'IgniterLabs.KitchenDisplay.Manage' => [
-                'description' => 'lang:igniterlabs.kitchendisplay::default.help_permission',
-                'group' => 'igniter.cart::default.text_permission_order_group',
-            ],
-        ];
-    }
-
-    #[Override]
-    public function registerNavigation(): array
-    {
-        return [
-            'tools' => [
-                'child' => [
-                    'kitchendisplay' => [
-                        'priority' => 350,
-                        'title' => lang('igniterlabs.kitchendisplay::default.text_title'),
-                        'class' => 'kitchendisplay',
-                        'href' => admin_url('kitchendisplays'),
-                        'permission' => 'IgniterLabs.KitchenDisplay.Manage',
-                    ],
-                ],
-            ],
-        ];
+        if (method_exists(parent::class, 'boot') && !Setup::withholds($this->aviMarketplaceGated)) {
+            parent::boot();
+        }
     }
 }
