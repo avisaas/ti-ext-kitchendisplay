@@ -189,13 +189,11 @@ class KitchenDisplay extends BaseWidget
     protected function getBoardItems(): array
     {
         $eventResults = $this->fireEvent('kitchendisplay.getBoardItems', [$this->model]);
-
-        $generatedEvents = [];
         if (count($eventResults) > 0) {
-            $generatedEvents = array_merge(...$eventResults);
+            return array_merge(...$eventResults);
         }
 
-        return $generatedEvents;
+        return [];
     }
 
     protected function getAvailableStatuses(): Collection
