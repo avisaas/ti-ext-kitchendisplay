@@ -11,7 +11,6 @@ return [
 
     'column_title' => 'Title',
     'column_status' => 'Status',
-    'column_date_added' => 'Date Added',
 
     'text_title' => 'Kitchen Display',
     'text_form_name' => 'Kitchen Display',
@@ -54,14 +53,6 @@ return [
     'label_board_column_priority' => 'Priority',
     'label_hidden_card_fields' => 'Hide Card Fields',
 
-    'board_column_new' => 'New',
-    'board_column_preparing' => 'Preparing',
-    'board_column_ready' => 'Ready To Collect',
-    'board_column_completed' => 'Completed',
-    'board_column_on_hold' => 'On Hold',
-
-    'status_rejected' => 'Rejected',
-
     'option_customer_name' => 'Customer Name',
     'option_order_id' => 'Order ID',
     'option_order_type' => 'Order Type',
@@ -70,8 +61,6 @@ return [
     'help_locations' => 'Filter orders by location. Leave empty to show all locations',
     'help_order_types' => 'Filter orders by type. Leave empty to show all types',
     'help_menu_categories' => 'Filter orders by menu category. Leave empty to show all categories',
-    'help_users_assigned_only' => 'When enabled, only orders assigned to the logged in user will be shown except for Admin users',
-    'help_users_assigned' => 'Leave empty to display orders assigned to all users',
     'help_orders_limit' => 'Display latest X orders (default is 20, limit to 100)',
     'help_poll_interval' => 'How often to check for new orders in seconds (default is 5, max 60)',
     'help_hidden_card_fields' => 'Choose which fields to hide from order cards. Leave empty to display all fields.',
