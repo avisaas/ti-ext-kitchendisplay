@@ -40,6 +40,7 @@ class KitchenDisplays extends AdminController
     public array $formConfig = [
         'name' => 'igniterlabs.kitchendisplay::default.text_form_name',
         'model' => KitchenDisplayModel::class,
+        'recordName' => 'title',
         'request' => KitchenDisplayRequest::class,
         'create' => [
             'title' => 'lang:igniter::admin.form.create_title',
